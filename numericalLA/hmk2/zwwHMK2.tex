@@ -1,0 +1,227 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{geometry}
+ \geometry{
+ a4paper,
+ total={170mm,257mm},
+ left=20mm,
+ top=20mm,
+ }
+\usepackage{natbib}
+%opening
+
+%\usepackage[version=3]{mhchem} % Formula subscripts using \ce{}
+\usepackage{braket}
+\usepackage{amsmath}
+\usepackage{wrapfig}
+\usepackage{lipsum}     % for sample text
+\usepackage{upgreek}
+\usepackage{graphicx}
+\usepackage{chemfig}
+\usepackage{caption}
+\usepackage{textcomp}
+\usepackage{underscore}
+\usepackage{gensymb}
+\usepackage{dcolumn}
+\usepackage{siunitx}
+\usepackage{multirow}
+\usepackage{amssymb}
+
+
+\begin{document}
+
+\section{Question 1}
+
+To be considered a norm, a norm has to satisfy the three conditions given on pg. 17. So, by proving - for example - the expression in question does not satisfy the triangle inequality we will have shown that it does not satisfy all 3 properties and therefore can not be considered a norm. Given the expression 
+\begin{equation}
+f(x) = \big( \sum_{j=1}^n | x_j|^p\big)^{\frac{1}{p}}
+\end{equation}
+ for p on the interval $0<p<1$, we will show that the converse of the triangle inequality, namely $|| x + y || > ||x||+ ||y||$, is true, and therefore the expression does not constitute a norm. 
+
+We start by assuming the there exists some $x,y \in \mathbb{C}^n$ and that $p=\frac{a}{b}$ such that the interval we are concerned with is still $0<\frac{a}{b}<1$.We further assume that $x=e_i$ and $y=e_j$ - a particular column of the identity matrix - such that $i \neq j$. So the left-hand side of the triangle inequality will yield
+
+\begin{equation}
+|| x + y || = \bigg( \sum_{j=1}^n | x_j + y_j |^{\frac{a}{b}}\bigg)^{\frac{b}{a}}
+\end{equation}
+Because $x$ and $y$ are orthogonal based on the above assumption this can be simplified such that
+
+\begin{equation}
+|| x + y || = \bigg( 1^{\frac{a}{b}} + 1^{\frac{a}{b}} \bigg)^{\frac{b}{a}}= 2^{\frac{b}{a}}
+\end{equation}
+where we note that the ratio $\frac{b}{a}>1$, and consequently the lefthand side of the triangle inequality for this example is $>2$.
+
+The right hand side reduces to the following expression
+\begin{equation}
+|| x || + || y || = (1) + (1) = 2
+\end{equation}
+
+Therefore, we have proven that on the interval $0<p<1$ the triangle inequality does not hold because $|| x + y || > ||x||+ ||y||$ and the original expression does not satisfy all the necessary requirements to be considered a norm. 
+
+
+
+
+
+
+
+
+
+
+
+\section{Question 2 - Book 3.1}
+
+We seek to prove that $||x||_W = || Wx || $ is a vector norm for any general $W \in \mathbb{C}^{m\times m}$. To be considered a norm, all 3 conditions must be satisfied. 
+
+We will show that $|| Wx || \geq 0$ and $|| Wx || =0$ only if $x=0$ as the first condition. By assuming that $W$ is nonsingular, we note that this means the columns of $W$ are linearly independent. By definition, this means that no linear combination of the columns of $W$ can equal 0 except $x=0$. In other words,  nullspace of $W$ only has the zero vector in it. Furthemore, we know $||Wx|| \geq 0$ must be true and is a trivial statement that arises from the absolute value in the definition of a norm. 
+
+
+We next show that $|| \alpha Wx || = |\alpha | || Wx ||$ as the second condition. We note
+\begin{equation}
+|| \alpha Wx || = \bigg( \sum_{i=1}^m | \alpha w_i x_i |^p \bigg)^{\frac{1}{p}} =  \bigg( |\alpha|^p \sum_{i=1}^m |  w_i x_i |^p \bigg)^{\frac{1}{p}} = |\alpha | \bigg( \sum_{i=1}^m |  w_i x_i |^p \bigg)^{\frac{1}{p}}
+\end{equation}
+where we note the the final term $\bigg( \sum_{i=1}^m |  w_i x_i |^p \bigg)^{\frac{1}{p}} = || Wx||$. Therefore we have shown that $|| \alpha Wx || = |\alpha | || Wx ||$.
+
+The final condition we will show is the triangle inequality is satisfied, namely $|| W(x+y) || \leq || Wx || + || Wy ||$. We let $x=e_i$ and $y=e_j$ where $i = j$ ( ie the same column of the identity matrix ). We note $x,y \in \mathbb{C}^m$. So, using the definition of a norm, the expression of the left hand side of the inequality looks like
+\begin{equation}
+|| Wx + Wy || = \bigg( (w_i)^p + (w_i)^p \bigg)^{\frac{1}{p}} =(2w_i^p)^{\frac{1}{p}} = w_i 2^{\frac{1}{p}}
+\end{equation}
+where $w_i, w_j$ are columns $i,j$ of $W$, respectively. 
+The right hand side of the expression looks like
+\begin{equation}
+|| Wx || + || Wy || = w_i  + w_i = 2w_i
+\end{equation}
+So putting this information together, we see that
+\begin{equation}
+2^{\frac{1}{p}}w_i \leq 2w_i 
+\end{equation}
+For the interval $1\leq p < \infty$, we note that the equality holds for $p=1$ but that $2^{\frac{1}{p}} < 2$ for $p>1$. Thus the triangle identity holds, and the above expression represents a vector norm for a general $W$.
+
+
+\section{Question 3 - Book 3.2}
+We wish to show that the maximum eigenvalue of matrix $A$ is less than or equal to the norm of $A$, ie $max(\lambda) \leq || A || $. We know the right hand side of this expression can be defined as
+\begin{equation}
+|| A || = \max_{y\neq 0} \frac{|| Ay||}{||y||} = \max_{||y||=1}|| Ay|| \geq || Ax ||
+\end{equation}
+
+We know the eigenvalue equation $Ax=\lambda x$. Thus, plugging this into the expression on right hand side of the above expression describing a vector norm on $x\in \mathbb{C}^m$ yields
+\begin{equation}
+|| Ax || = || \lambda x || = |\lambda | ||x|| \rightarrow |\lambda | = \frac{|| Ax ||}{|| x ||}
+\end{equation}
+Supposing $|| x || =1$, taking the $max$ on both sides, and inserting this back into our starting expression yields 
+
+\begin{equation}
+| \lambda_{max} | \leq || A ||
+\end{equation}
+ where $\lambda_{max}$ is the largest eigenvalue of $A$. %To see why this is the case, I thought I would 
+
+To see why the strict inequality is true, we can use a simple matrix
+
+
+
+\begin{equation}
+A=\begin{pmatrix}
+0&1  \\
+0&0\\
+\end{pmatrix}
+\end{equation} 
+
+which has a maximal eigenvalue of 0, but the operator norm is 1. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Question 4 - Book 3.3}
+\subsection{part a}
+We note that from the definitions
+\begin{equation}
+||x||_{\infty} = max_{1\leq i \leq m} |x_i | =x_{max}
+\end{equation}
+where $x_{max}$ is the maximum element of the vector $x$
+and 
+\begin{equation}
+||x||_2 =\big( \sum_{i}^m |x_i|^2 \big)^{\frac{1}{2}} = \big( |x_1|^2+|x_2|^2+\cdots+|x_{max}|^2 + \cdots +|x_m|^2\big)^{\frac{1}{2}}
+\end{equation}
+so clearly we can rearrange the inequality such that
+
+\begin{equation}
+x_{max}^2\leq \big( |x_1|^2+|x_2|^2+\cdots+|x_{max}^2 + \cdots |x_m|^2| + |x_m|^2\big) \rightarrow 0 \leq \big( |x_1|^2+|x_2|^2+\cdots+|x_{m}|^2
+\end{equation}
+
+This is expression is always - and by extension $||x||_{\infty} \leq ||x||_2$  - true as a result of the absolute value and subsequent squaring. An example of a vector where a strict equality is held would be if $x=\alpha e_i$ where $e_i$ is a column of the identiy matrix and $\alpha \in \mathbb{C}$. 
+
+\subsection{part b}
+We know the following expression must be true
+\begin{equation}
+\big( \sum_{i}^m |x_i|^2\big)^{\frac{1}{2}} \leq \big(\sum_i^m |x_{max}|^2   \big)^{\frac{1}{2}} = \big( m|x_{max}|^2\big)^{\frac{1}{2}} =\sqrt{m}|x_{max}|
+\end{equation}
+Ergo from the definitions of the respective vector norms in the part a, we see that $||x||_2 \leq \sqrt{m}||x||_{\infty}$. An example of a vector that achieves strict equality is
+\begin{equation}
+x=\alpha \begin{pmatrix}
+1  \\
+1\\
+\vdots \\
+1\\
+\end{pmatrix}
+\end{equation} where every entry of the vector is a 1 and $\alpha \in \mathbb{C}$. 
+
+
+\subsection{part c}
+We know that the general form of the matrix p norm is
+\begin{equation}
+||A||_p = max_{x\neq 0} \frac{|| Ax ||_p}{|| x||_p}
+\end{equation}
+From parts a and b, we have shown that $||x||_{\infty} \leq ||x||_2 \leq \sqrt m||x||_{\infty}$. So starting with the definition of the matrix infinity norm we see
+\begin{equation}
+||A||_{\infty}=\max_{x\neq0} \frac{||Ax||_{\infty}}{||x||_{\infty}} \leq \max_{x\neq 0}  \frac{||Ax||_2}{\frac{1}{\sqrt n}||x||_2}
+\end{equation}
+
+Taking the scalar out, and inserting the definition for the matrix 2 norm yields $||A||_{\infty} \leq \sqrt n ||A||_2$
+\subsection{part d}
+
+We know that the general form of the matrix p norm is
+\begin{equation}
+||A||_p = max_{x\neq 0} \frac{|| Ax ||_p}{|| x||_p}
+\end{equation}
+From parts a and b, we have shown that $||x||_{\infty} \leq ||x||_2 \leq \sqrt m||x||_{\infty}$. So starting with the definition of the matrix 2 norm we see
+\begin{equation}
+||A||_2 = max_{x\neq 0} \frac{||Ax||_2}{||x||_2} \leq max_{x\neq 0} \frac{\sqrt m ||Ax||_{\infty}}{||x||_2} \leq max_{x\neq 0} \frac{\sqrt m ||Ax||_{\infty}}{||x||_{\infty}}
+\end{equation}
+We can pull the scalar $\sqrt m$ out of the expression and insert the definition for the infinity norm on the right hand side, showing that
+\begin{equation}
+||A||_2 \leq \sqrt m ||A||_{\infty}
+\end{equation}
+
+
+
+
+
+\section{Question 5}
+
+From the expansion of $Ax = \sum_{j=1}^n a_{ij} x_j = \sum_{j=1}^n x_j a_j$ (for $A \in \mathbb{C}^{m \times n}$) and the induced matrix norm, $||A||_1 = ||Ax||_1$, we define the expression
+
+\begin{equation}
+||Ax||_1 = || \sum_{j=1}^n x_j a_{j}||_1 \leq \sum_{j=1}^n |x_j| || a_{j} ||_1 \leq \max_{1\leq j \leq n} ||a_j||_1 \rightarrow ||A||_1 \leq \max_{1\leq j \leq n} ||a_j||_1
+\end{equation}
+
+where we have brought $\sum_{j=1}^n |x_j|  = || x ||_1$ to the left handside. Therefore, we have shown in the above that $||A||_1 \leq  \max_{1\leq j \leq n } ||a_{j}||_1 $
+
+
+
+
+The next step is to define any vector $u\neq0$ such that $||A||_1 \geq \frac{||Au||_1}{||u||_1}$. So we wish to construct $u$ such that $||Au||_1 = \max_{1\leq j \leq n } ||a_{j}||_1$. The $u$ that does this is the particular column of the identity matrix $e_j$ where the index $j$ corresponds to the maximum column of $A$ that has a maximal sum: $||a_j||_1$. This shows a tight bound and proves that 
+\begin{equation}
+||A||_1 =  \max_{1\leq j \leq n }\sum_{i}^m |a_{ij}|
+\end{equation}
+aka that the 1-norm of a matrix is equivalent to the maximal column sum.
+
+
+
+
+\end{document}

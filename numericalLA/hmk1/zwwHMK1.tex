@@ -1,0 +1,614 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{geometry}
+ \geometry{
+ a4paper,
+ total={170mm,257mm},
+ left=20mm,
+ top=20mm,
+ }
+\usepackage{natbib}
+%opening
+
+%\usepackage[version=3]{mhchem} % Formula subscripts using \ce{}
+\usepackage{braket}
+\usepackage{amsmath}
+\usepackage{wrapfig}
+\usepackage{lipsum}     % for sample text
+\usepackage{upgreek}
+\usepackage{graphicx}
+\usepackage{chemfig}
+\usepackage{caption}
+\usepackage{textcomp}
+\usepackage{underscore}
+\usepackage{gensymb}
+\usepackage{dcolumn}
+\usepackage{siunitx}
+\usepackage{multirow}
+\usepackage{amssymb}
+
+
+\begin{document}
+
+\section{Question 1 - Book 1.1}
+
+\subsection{1.1 part a}
+The general idea is that all row operations acting on A are carried out by multiplying on the left of A and all column operations act on A from the right. 
+
+So, all column operations (operations 1,4,6,7 in order) can be given as
+
+\begin{equation}
+B\begin{pmatrix}
+1 & 0 &0 & 0 \\
+0 & 2 &0 & 0\\
+0 & 0 &1 & 0\\
+0 & 0 &0 & 1\\
+\end{pmatrix}
+\begin{pmatrix}
+0 & 0 &0 & 1 \\
+0 & 1 &0 & 0\\
+0 & 0 &1 & 0\\
+1 & 0 &0 & 0\\
+\end{pmatrix}
+\begin{pmatrix}
+1 & 0 &0 & 0 \\
+0 & 1 &0 & 0\\
+0 & 0 &1 & 1\\
+0 & 0 &0 & 0\\
+\end{pmatrix}
+\begin{pmatrix}
+ 0 &0 & 0 \\
+ 1&0 & 0\\
+ 0 &1 & 0\\
+ 0 &0 & 1\\
+\end{pmatrix}
+\end{equation}
+ and all row operations ( operations 2,3,5 in order) can be given as
+ 
+ \begin{equation} 
+  \begin{pmatrix}
+1 & -1 &0 & 0 \\
+0 & 1 &0 & 0\\
+0 & -1 &1 & 0\\
+0 & -1 &0 & 1\\
+\end{pmatrix}
+ \begin{pmatrix}
+1 & 0 &1 & 0 \\
+0 & 1 &0 & 0\\
+0 & 0 &1 & 0\\
+0 & 0 &0 & 1\\
+\end{pmatrix}
+ \begin{pmatrix}
+1 & 0 &0 & 0 \\
+0 & 1 &0 & 0\\
+0 & 0 &\frac{1}{2} & 0\\
+0 & 0 &0 & 1\\
+\end{pmatrix}B
+ \end{equation}
+ 
+ Therefore, all operations on B can be given as
+ 
+ \begin{equation}
+   \begin{pmatrix}
+1 & -1 &0 & 0 \\
+0 & 1 &0 & 0\\
+0 & -1 &1 & 0\\
+0 & -1 &0 & 1\\
+\end{pmatrix}
+ \begin{pmatrix}
+1 & 0 &1 & 0 \\
+0 & 1 &0 & 0\\
+0 & 0 &1 & 0\\
+0 & 0 &0 & 1\\
+\end{pmatrix}
+ \begin{pmatrix}
+1 & 0 &0 & 0 \\
+0 & 1 &0 & 0\\
+0 & 0 &\frac{1}{2} & 0\\
+0 & 0 &0 & 1\\
+\end{pmatrix}B
+\begin{pmatrix}
+1 & 0 &0 & 0 \\
+0 & 2 &0 & 0\\
+0 & 0 &1 & 0\\
+0 & 0 &0 & 1\\
+\end{pmatrix}
+\begin{pmatrix}
+0 & 0 &0 & 1 \\
+0 & 1 &0 & 0\\
+0 & 0 &1 & 0\\
+1 & 0 &0 & 0\\
+\end{pmatrix}
+\begin{pmatrix}
+1 & 0 &0 & 0 \\
+0 & 1 &0 & 0\\
+0 & 0 &1 & 1\\
+0 & 0 &0 & 0\\
+\end{pmatrix}
+\begin{pmatrix}
+ 0 &0 & 0 \\
+ 1&0 & 0\\
+ 0 &1 & 0\\
+ 0 &0 & 1\\
+\end{pmatrix}
+ \end{equation}
+
+
+\subsection{1.1 part b}
+
+We can use the above information and the rules of matrix multiplication to condense the left and right hand matrices on either side of $B$ to single matrices. Thus, for the left hand side, we note that a matrix $A$ is given as the product of the 3 matrices shown above, seen as 
+
+\begin{equation}
+A=\begin{pmatrix}
+1 & -1 &\frac{1}{2} & 0 \\
+0 & 1 &0 & 0\\
+0 & -1 &\frac{1}{2} & 0\\
+0 & -1&0 & 1\\
+\end{pmatrix}
+\end{equation}
+
+Additionally, the matrix product of the four matrices on the right of $B$ can be condensed using the rules of matrix multiplication such that
+
+\begin{equation}
+C=\begin{pmatrix}
+0 &0 & 0 \\
+ 2 &0 & 0\\
+ 0 &1 & 1\\
+ 0&0 & 0\\
+\end{pmatrix}
+\end{equation}
+
+
+\section{Question 2}
+Suppose $\textbf{R}$ is given to be an upper triagular matrix such that its components are 
+
+\begin{equation}
+R_{ij} =
+\left\{
+	\begin{array}{ll}
+		r_{ij}  & \mbox{if } j \geq i \\
+		0 & \mbox{otherwise} 
+	\end{array}
+\right.
+\end{equation}
+
+
+for a general $r_{ij}\in \mathbb{C}$. The full matrix can be written as
+
+\begin{equation*}
+R_{m,m} = 
+\begin{pmatrix}
+r_{1,1} & r_{1,2} & \cdots & r_{1,m} \\
+0 & r_{2,2} & \cdots & r_{2,m} \\
+\vdots  & \vdots  & \ddots & \vdots  \\
+0 & 0 & \cdots & r_{m,m} 
+\end{pmatrix}
+\end{equation*}
+
+
+Suppose also that $\textbf{R}$ has an inverse,  $\textbf{R}^{-1}$, given to be
+
+\begin{equation*}
+R_{m,m}^{-1} = 
+\begin{pmatrix}
+x_{1,1} & x_{1,2} & \cdots & x_{1,m} \\
+x_{2,1} & x_{2,2} & \cdots & x_{2,m} \\
+\vdots  & \vdots  & \ddots & \vdots  \\
+x_{m,1} & x_{m,2} & \cdots & x_{m,m} 
+\end{pmatrix}
+\end{equation*}
+for general $x_{1\cdots m, 1 \cdots m} \in \mathbb{C}$. Furthermore, the matrix multiplication of these two matrices abides by the following relationship 
+\begin{equation}
+\textbf{R} \textbf{R}^{-1} =  \textbf{R}^{-1}\textbf{R}= \textbf{I} 
+\end{equation}
+
+where $\textbf{I}$ is the identity matrix. Using pg 6 of our text as reference, we further know that the column formula yields
+
+\begin{equation}
+\textbf{I}_j  = \textbf{R}^{-1} \textbf{R}_j = \sum_{k=1}^m r_{kj} x_k 
+\end{equation}
+
+with the interpretation that a column of the identity matrix is a linear combination of the columns of $\textbf{R}^{-1}$ with coefficients $r_{kj}$. So we will prove that the matrix  $\textbf{R}^{-1}$ is upper triangular for cases $j=1,2,\cdots,m-n, m$ for an arbitrary $n$ and therefore true for any $m$. 
+
+\subsection{case $j=1$ }
+
+\begin{equation}
+I_1 =\begin{bmatrix}
+           1 \\
+           0 \\
+           \vdots \\
+           0 \\
+           \vdots \\
+           0
+         \end{bmatrix} = r_{1,1} \begin{bmatrix}
+           x_{1,1} \\
+           x_{2,1} \\
+           \vdots \\
+           x_{m-n,1} \\
+           \vdots \\
+           x_{m,1}
+         \end{bmatrix}
+\end{equation}
+
+The only solution to this equation is one where $r_{1,1} x_{1,1} = 1 \rightarrow x_{1,1}=\frac{1}{r_{1,1}}$ and the other $x_{2\cdots m,1}=0$
+
+
+\subsection{case $j=2$ }
+
+
+
+\begin{equation}
+I_2 =\begin{bmatrix}
+           0 \\
+           1 \\
+           \vdots \\
+           0 \\
+           \vdots \\
+           0
+         \end{bmatrix} = r_{1,2} \begin{bmatrix}
+           x_{1,1} \\
+           x_{2,1} \\
+           \vdots \\
+           x_{m-n,1} \\
+           \vdots \\
+           x_{m,1}
+         \end{bmatrix} + r_{2,2} \begin{bmatrix}
+           x_{1,2} \\
+           x_{2,2} \\
+           \vdots \\
+           x_{m-n,2} \\
+           \vdots \\
+           x_{m,2}
+           \end{bmatrix} =  r_{1,2} \begin{bmatrix}
+           \frac{1}{r_{1,1}} \\
+           0 \\
+           \vdots \\
+           0 \\
+           \vdots \\
+           0
+         \end{bmatrix} + r_{2,2} \begin{bmatrix}
+           x_{1,2} \\
+           x_{2,2} \\
+           \vdots \\
+           x_{m-n,2} \\
+           \vdots \\
+           x_{m,2}
+           \end{bmatrix}
+\end{equation}
+
+From this set of equations, we know that for any $x_{3\cdots m, 2} =0$, $x_{2,2}=\frac{1}{r_{2,2}}$, and $\frac{r_{1,2}}{r_{1,1}} + r_{2,2}x_{1,2} =0$
+
+
+\subsection{case $j=m-n$ }
+
+
+
+\begin{equation}
+I_{m-n} =\begin{bmatrix}
+           0 \\
+           0 \\
+           \vdots \\
+           1 \\
+           \vdots \\
+           0
+         \end{bmatrix} = r_{1,m-n} \begin{bmatrix}
+           x_{1,1} \\
+           0 \\
+           \vdots \\
+           0 \\
+           \vdots \\
+           0
+         \end{bmatrix} + r_{2,m-n} \begin{bmatrix}
+           x_{1,2} \\
+           x_{2,2} \\
+           \vdots \\
+           0 \\
+           \vdots \\
+           0
+           \end{bmatrix} + \cdots + r_{m-n,m-n}\begin{bmatrix}
+           x_{1,m-n} \\
+           x_{2,m-n} \\
+           \vdots \\
+           x_{m-n,m-n} \\
+           \vdots \\
+           x_{m,m-n}
+           \end{bmatrix} 
+\end{equation}
+
+We can follow the pattern and immediately note that for any $p > m-n$, $x_{p,m-n} =0$ and $x_{m-n,m-n} r_{m-n,m-n} =1$ must be true. Furthermore, back substitution can be used to determine the values of $x_{p,m-n}$ for $p < m-n $.
+
+\subsection{case $j=m$ }
+
+\begin{equation}
+I_{m} =\begin{bmatrix}
+           0 \\
+           0 \\
+           \vdots \\
+           0 \\
+           \vdots \\
+           1
+         \end{bmatrix}=r_{1,m-n} \begin{bmatrix}
+           x_{1,1} \\
+           0 \\
+           \vdots \\
+           0 \\
+           \vdots \\
+           0
+         \end{bmatrix} + r_{2,m-n} \begin{bmatrix}
+           x_{1,2} \\
+           x_{2,2} \\
+           \vdots \\
+           0 \\
+           \vdots \\
+           0
+           \end{bmatrix} + \cdots + r_{m-n,m-n}\begin{bmatrix}
+           x_{1,m-n} \\
+           x_{2,m-n} \\
+           \vdots \\
+           x_{m-n,m-n} \\
+           \vdots \\
+           0
+           \end{bmatrix} + \cdots + r_{m,m}\begin{bmatrix}
+           x_{1,m} \\
+           x_{2,m} \\
+           \vdots \\
+           x_{m-n,m} \\
+           \vdots \\
+           x_{m,m}
+           \end{bmatrix} 
+\end{equation}
+
+Again, we follow the pattern; namely that $x_{m,m}r_{m,m}=1$, and follow the back substitution procedure to determine the other $x_{m-i,m}$ for any $1<i<m$.
+
+Thus substituting all of this information, we have shown that $\textbf{R}^{-1}$ must have an upper triangular structure given to be
+
+
+\section{Question 3}
+We wish to prove the fact that if matrix $A$ is both lower triangular and normal, then it is diagonal. We will skip the $m=1$ case, as this matrix is by default triangular, normal, and diagonal. For the $m=2$ case we see that $A$ can be written
+
+\begin{equation}
+A=\begin{pmatrix}
+a_{11} &0  \\
+ a_{21} &a_{22} \\
+\end{pmatrix}
+\end{equation}
+ Then, we note that for $A$ to be normal, $AA^* = A^*A$ , so expanding this out we see that
+ 
+ \begin{equation}
+ AA^*=\begin{pmatrix}
+a_{11} &0  \\
+ a_{21} &a_{22} \\
+\end{pmatrix}\begin{pmatrix}
+\bar{a_{11}} &\bar{ a_{21} } \\
+0 &\bar{a_{22}} \\
+\end{pmatrix} =
+\begin{pmatrix}
+| a_{11} |^2 &a_{11}\bar{ a_{21} } \\
+a_{21}\bar{a_{11}} &| a_{21} |^2+ | a_{22} |^2 \\
+\end{pmatrix}
+ \end{equation} 
+ 
+ and
+ 
+ \begin{equation}
+ A^* A=\begin{pmatrix}
+\bar{a_{11}} &\bar{ a_{21} } \\
+0 &\bar{a_{22}} \\
+\end{pmatrix}\begin{pmatrix}
+a_{11} &0  \\
+ a_{21} &a_{22} \\
+\end{pmatrix}=
+\begin{pmatrix}
+| a_{11} |^2 + | a_{21} |^2&a_{22}\bar{ a_{21} } \\
+a_{21}\bar{a_{22}} & | a_{22} |^2 \\
+\end{pmatrix}
+ \end{equation} which further implies that $a_{21}=0$ for the expression to hold. Note, if we plug this into our original matrix $A$, we see that it is diagonal. 
+ 
+ Now suppose matrices of dimensions $l=1,\cdots,m-1$ are diagonal, we will show that the relationship holds for dimension $m$. Given a lower triangular matrix of dimension $m-1 \times m-1$ called $A_{m-1}$ and row vector $b$ of dimension $m-1$, we can show that
+ 
+ \begin{equation}
+ AA^*=\begin{pmatrix}
+A_{m-1} & 0 \\
+b & a_{mm} \\
+\end{pmatrix}
+\begin{pmatrix}
+A_{m-1}^* &b^* \\
+0 & \bar{a_{mm}} \\
+\end{pmatrix} =
+\begin{pmatrix}
+  A_{m-1}^*A_{m-1}   & A_{m-1}b^*  \\
+  A_{m-1}^* b  & bb^* + | a_{mm} |^2 \\
+\end{pmatrix}
+ \end{equation}
+ 
+ and 
+ \begin{equation}
+ A^*A=\begin{pmatrix}
+A_{m-1}^* &b^* \\
+0 & \bar{a_{mm}} \\
+\end{pmatrix}
+\begin{pmatrix}
+A_{m-1} & 0 \\
+b & a_{mm} \\
+\end{pmatrix}
+ =
+\begin{pmatrix}
+b^*b+ A_{m-1}^*A_{m-1} & b^* a_{mm}\\
+\bar{a_{mm}} b & |a_{mm}|^2 \\
+\end{pmatrix}
+ \end{equation}
+
+Note, $0$ here denotes a column of $0$ of dimension $m-1$ in the case of matrix $A$. Equating these two, we see that they are only equivalent if and only if $b = 0$. Again, plugging this into the general expression for matrix $A$ of dimenion $m\times m$ we see that $A$ is diagonal. 
+
+
+
+
+
+\section{Question 4}
+Assuming $Ay=x$, we can write
+\begin{equation}
+x^*(Ay)=x^*(\sum_j y_j a_j)
+\end{equation} where $a_j$ represent the jth column of matrix $A$. We see that $x^{*} = (Ay)^{*}=y^{*} A^{*}$, and inserting into the above equation yields
+
+\begin{equation}
+(\sum_{j^*} a_{j^*}^* y_{j^*}^*  )(\sum_j y_j a_j)
+\end{equation}
+
+Acknowledging that the inner product formula has the form $p^* q = \sum_i^m \bar{p}_i q_i$, we can equate $\bar{p}_i =a_{j^*}^* y_{j^*}^*$ and $q_i=y_j a_j$, meaning the above formula is in the form of an inner product, ie
+
+\begin{equation}
+x^*(Ay) = p^* q = \sum_i^m \bar{p}_i q_i
+\end{equation}
+
+Therefore, $x^*(Ay)$ represents an inner product. NOTE:: The above holds also if $Ay=z$ for general column vector z $\in \mathbb{C}^m$; none of the derivations change fundamentally as $A$ acting on $y$ creates a column vector $z$ which is acted upon by a row vector $x^*$. I just wanted to point this out.
+
+
+
+\section{Question 5 - Book 2.5}
+\subsection{2.5.a}
+Assuming $Sx=\lambda x$, we can project this onto $x^*$ such that
+
+\begin{equation}
+x^* Sx=\lambda x^*x \rightarrow \lambda = \frac{x^* Sx}{x^* x}
+\end{equation} where the last part is justified since division by the scalar $x^*x$ is allowed. This equation implies that
+
+\begin{equation}
+\bar{\lambda} =\frac{(x^* Sx)^*}{(x^* x)^*} =\frac{(x^*S^*x)}{x^* x}
+\end{equation} and since we know $S^* = -S$, then 
+
+\begin{equation}
+- \bar{\lambda} = \frac{x^* Sx}{x^* x}
+\end{equation} which implies that $ \lambda  -\bar{\lambda}= 2\frac{x^* Sx}{x^* x}$. If both $\lambda , \bar{\lambda} \in \mathbb{C} $, then $\lambda = a +ic$ and $\bar{\lambda} = a - ic$. Therefore
+
+\begin{equation}
+\lambda  -\bar{\lambda} = ic = \frac{x^* Sx}{x^* x}
+\end{equation} Ergo the eigenvalues are purely imaginary.
+
+
+\subsection{2.5.b}
+
+Let $B \equiv I - S$. The idea is that we want to show $B$ is invertible, which means the columns of $B$ are linearly independent, which further implies that the column vectors of $B$, $x_i \perp x_j, i \neq j$
+
+
+\begin{equation}
+\left\{
+	\begin{array}{ll}
+		Bx_i = \lambda_i x_i  & \\
+		Bx_j = \lambda_j x_j & 
+	\end{array}
+\right.
+\end{equation}, where we make the assumption that $\lambda_i \neq \lambda_j$ and $x_i \neq x_j$. We can project the above equations onto $x_j^*$ and $x_i^*$ such that
+
+\begin{equation}
+\left\{
+	\begin{array}{ll}
+		x_j^* Bx_i = \lambda_i x_j^* x_i  & \\
+		x_i^* Bx_j = \lambda_j x_i^* x_j & 
+	\end{array}
+\right.
+\end{equation}
+We can then add the complex conjugate of the second equation from the top equation such that
+
+\begin{equation}
+x_j^* Bx_i  + x_j^* B^*x_i  = \lambda_i x_j^* x_i  + \lambda_j x_j^* x_i
+\end{equation} At this point, it is prudent to expand $B \equiv I - S$ and $B^* \equiv I^* - S^* = I+S$  such that
+
+\begin{equation}
+x_j^* x_i + x_j^* x_i - x_j^* S x_i + x_j^* S x_i = \lambda_i x_j^* x_i  + \lambda_j^* x_j^* x_i
+\end{equation} 
+which can be simplified such that
+
+
+
+\begin{equation}
+0 =x_j^* x_i ( \lambda_i  - \lambda_j  -2 ) 
+\end{equation} Thus, two solutions exist:
+
+\begin{equation}
+\left\{
+	\begin{array}{ll}
+		x_j^* x_i = 0  & \\
+		( \lambda_i  - \lambda_j  -2 ) = 0& 
+	\end{array}
+\right.
+\end{equation}
+
+Remembering that $\lambda_i \neq \lambda_j$ and $x_i \neq x_j$, then the first relation implies that the column vectors must be perpendicular. In other words, $B$ must be nonsingular and/or invertible. 
+
+
+\subsection{2.5.c}
+To show $Q=(I-S)^{-1} (I+S)$ is unitary, we need to show that $QQ^* = Q^*Q=I$
+
+
+In other words,
+
+\begin{equation}
+Q^*Q = \bigg( (I-S)^{-1} (I+S) \bigg)^* (I-S)^{-1} (I+S)
+\end{equation} Expanding this, we see that
+
+
+
+\begin{equation}
+(I+S)^* \bigg( (I-S)^{*} (I-S) \bigg)^{-1} (I+S) = (I-S) \bigg(   I-S^2  \bigg)^{-1} (I+S)
+\end{equation} We can multiply the above by 1, or $(I-S)(I-S)^{-1}$, yielding
+
+
+\begin{equation}
+Q^*Q = (I-S)\bigg(   I-S^2  \bigg)^{-1} (I-S^2) (I-S)^{-1} = I
+\end{equation}
+
+Furthermore, by the properties of commuting operators, we note that $[Q,Q^*]=QQ^* -Q^*Q=0$. Since we have already shown $Q^*Q=I$, we have $QQ^*-I=0 \rightarrow QQ^*=I$.
+Ergo, $Q$ is a unitary matrix.
+
+
+
+
+\section{Question 6 - Book 2.6}
+
+Assuming $A$ is nonsingular, we wish to find $A^{-1}$ such that $AA^{-1}=I$. So we choose to express $A^{-1} = |x_1, \cdots, x_m |$ in a column vector format for arbitrary and unknown $x_i$; inserting this into our expression, we see that
+
+\begin{equation}
+AA^{-1}= (I+uv^*)|x_1, \cdots, x_m| = | e_1, \cdots, e_m |
+\end{equation} where $e_i$ are the column vectors of the identity matrix. This system of equations can be simplified into a general framework:
+
+\begin{equation}
+x_i + uv^* x_i = e_i \rightarrow x_i = e_i - u(v^* x_i)
+\end{equation} given for each column of $A^{-1}$. The final term in parenthesis is just a scalar $\beta = v^* x_i$, proving that 
+
+\begin{equation}
+A^{-1}=I- u\beta 
+\end{equation} Expanding this out to solve for $\beta$, we see that
+
+\begin{equation}
+AA^{-1}=(I+uv^*)(I - u\beta)=(I + uv^* -u\beta - uv^* u\beta)=I
+\end{equation} $I$ on each side cancels, leaving $v^* = \beta (1 + v^* u) \rightarrow \beta = \frac{v^*}{1+v^*u}$. Plugging this final expression of $\beta$ into our expression for $A^{-1}$ we see that it is in the form
+\begin{equation}
+A^{-1}= I - \frac{uv^*}{1+v^*u} \rightarrow I+\alpha uv^*
+\end{equation} where the last expression holds assuming that $\alpha = \frac{-1}{1+v^*u}$
+
+
+If $A$ is singular, then 
+\begin{equation}
+Ax=(I+uv^*)x=0 \rightarrow x=u(-v^*x)
+\end{equation}
+
+Since the term in parenthesis is a scalar, we acknowledge that the above can be rewritten such that $x=\alpha u$. Inserting this expression into $Ax$, we see that 
+
+\begin{equation}
+A(\alpha u) =(I + uv^*)(\alpha u) = \alpha u + \alpha u v^*u = \alpha u (1 + v^*u)=0
+\end{equation}
+This gives us two solutions: 1) $\alpha u = 0 $ or 2) $1+v^*u = 0 \rightarrow v^*u = -1$. The former is the trivial solution, so we assume the latter condition holds. As such, the nullspace of $A$ would be any linear combination of $\alpha u$. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
