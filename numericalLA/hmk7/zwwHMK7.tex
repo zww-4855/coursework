@@ -1,0 +1,158 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{geometry}
+ \geometry{
+ a4paper,
+ total={170mm,257mm},
+ left=20mm,
+ top=20mm,
+ }
+\usepackage{natbib}
+%opening
+
+%\usepackage[version=3]{mhchem} % Formula subscripts using \ce{}
+\usepackage{braket}
+\usepackage{amsmath}
+\usepackage{wrapfig}
+\usepackage{lipsum}     % for sample text
+\usepackage{upgreek}
+\usepackage{graphicx}
+\usepackage{chemfig}
+\usepackage{caption}
+\usepackage{textcomp}
+\usepackage{underscore}
+\usepackage{gensymb}
+\usepackage{dcolumn}
+\usepackage{siunitx}
+\usepackage{multirow}
+\usepackage{amssymb}
+
+
+\begin{document}
+
+
+
+
+
+
+\section{Question 1}
+\subsection{part a}
+We assume that $A$ is invertible such that $AA^{-1}=A^{-1}A=I$. Then
+\begin{equation}
+AXA(A^{-1})=AA^{-1} \rightarrow AX=I \rightarrow X=A^{-1}=(U\Sigma V^*)^{-1} = V \Sigma^{-1} U^*
+\end{equation}
+\subsection{part b}
+Making the same assumptions as before, in addition to the fact that X is also invertible such that $ XX^{-1}=X^{-1}X=I $ we see that
+\begin{equation}
+(X^{-1})XAX=(X^{-1})X\rightarrow AX=I \rightarrow X=V\Sigma^{-1}U^*
+\end{equation}
+
+\subsection{part c}
+Using ideas from the original equations in part a and b we note that
+\begin{equation}
+A^*=(AXA)^* = A^* (AX)^* = A^* (AX)
+\end{equation} where we used the fact the operators commute as the equation in part c demands. At this point, we see that
+\begin{equation}
+X=(A^* A)^{-1} A^* \rightarrow X=(V\Sigma U^* U \Sigma V^*)^{-1} (V\Sigma U^*)
+\end{equation} Consequently,
+\begin{equation}
+X=V \Sigma^{-2} V^* V \Sigma U^* = V\Sigma^{-1}U^*
+\end{equation}
+
+\subsection{part d}
+We note that we can also obtain the following from parts a and b as seen in part c:
+\begin{equation}
+X^* = (XAX)^* = X^* A^* X^* = X^* (XA)^* =X^* (XA) = U\Sigma^{-1}V^*
+\end{equation} where the latter two terms arise by enforcing the condition seen in part d. Thus we are left with $X^*=X^*XA\rightarrow A=(X^*X)^{-1}X^* = U\Sigma V^*$. Insering the above expression in for $X$ and $X^*$ in terms of SVD, we see that
+\begin{equation}
+\bigg( U\Sigma^{-1}V^* V \Sigma^{-1} U^* \bigg)^{-1}(U\Sigma^{-1}V^*=U\Sigma V^* =A
+\end{equation}
+Thus, we have shown that be enforcing condition d, we arrive at appropriate expressions for $X$ and $X^*$.
+
+
+\section{Question 2 - Book 12.1}
+Using the definition of the Frobenius norm and the fact that $||A||_2 = \sigma_{max} = 100$, we note that
+\begin{equation}
+||A||_F = \bigg( \sum_{i=1}^{202} \sigma_i \bigg)^{\frac{1}{2}} = \bigg( \sigma_{max} + \sum_{i=2}^{202} \sigma_i \bigg)^{\frac{1}{2}}
+\end{equation}  We recall from the singular value decomposition that the singular values are ordered in a decreasing fashion. Furthermore, in a general situation, we note that the sum of remaining singular values must be equal to 201, since $||A||_F =101$. And since we are summing over the remaining 201 singular values, we note that any general $\sigma_i \leq 1$ for $2<i<202$. A lower bound for the condition number can be achieved by maximizing $\sigma_{202}$ such that
+\begin{equation}
+\kappa(A)=\frac{\sigma_{max}}{\sigma_{202}}
+\end{equation} This maxima is obtain if $\sigma_2 = \cdots = \sigma_{202}=1$. Thus the sharpest possible lower bound is $\frac{100}{1}=100$.
+
+
+
+
+
+
+
+\section{Question 3}
+
+Noting a matrix $A \in \mathbb{C}^{m\times n}$ has full rank, we can decompose $A$ via the SVD such that $A=U\Sigma V^*$, such that $U$ and $V^*$ are unitary matrices and 
+\begin{equation}
+\Sigma = \begin{pmatrix}
+\sigma_1 &  \cdots & 0 \\
+0 & \ddots &0 \\
+0& \cdots & \sigma_m \\
+\end{pmatrix}
+\end{equation} where the eigenvalues of placed along the diagonal of $\Sigma$ and ordered such that $\sigma_1 > \cdots > \sigma_m$. Thus we note that the induced matrix 2 norm can be written such that
+\begin{equation}
+\frac{|| Ax||_2}{||x||_2}= \frac{||(U\Sigma V^*)x ||_2}{||x||_2} = \frac{||\Sigma x||_2}{||x||_2}
+\end{equation} remembering the properties of said normal when unitary matrices are involved. Assuming we are dealing with vectors $x$ that can assume any column of the $n\times n$ identiy matrix, we immediately note that $||Ax||_2$ assumes a maximum value whenever
+\begin{equation}
+x= \begin{pmatrix}
+1\\
+\vdots \\
+0 \\
+\end{pmatrix}
+\end{equation}
+and a minimum value whenever
+\begin{equation}
+x= \begin{pmatrix}
+0\\
+\vdots \\
+1 \\
+\end{pmatrix}
+\end{equation}
+Thus, we have shown that
+\begin{equation}
+\sigma_1 \ge \frac{|| Ax||_2}{||x||_2} \ge \sigma_m
+\end{equation}
+where strict equality is achieved in the prior 2 examples, and inequalities are achieved when dealing with any of the remaining columns of the identity matrix. 
+  
+  
+  
+ \section{Question 4}
+ Let $\kappa(AB) = ||(AB)||_2 || (AB)^{-1} ||_2$, $\kappa(A) = ||A||_2 ||A^{-1}||_2$, and $\kappa(B)=||B||_2 ||B^{-1}||_2$ be the appropriately defined conditions numbers for some nonsingular matrices $A$ and $B$. Because of the identity 
+ 
+ \begin{equation}
+ ||XY||_p \leq ||X||_p ||Y||_p
+ \end{equation} for $1\leq p \leq \infty$, we note that separately, ( and if we are working in the 2 norm)
+ \begin{equation}
+ ||(AB)||_2 \leq ||A||_2 ||B||_2
+ \end{equation} and 
+ \begin{equation}
+ || (AB)^{-1} ||_2 \leq||A^{-1}||_2 ||B^{-1}||_2
+ \end{equation} must be true. Therefore, we can combine these statements, such that
+ 
+ \begin{equation}
+ \kappa(AB) \leq \kappa(A) \kappa(B)
+ \end{equation}
+ 
+ 
+  \section{Question 5}
+A $2\times 2$ matrix $A$ and $B$ that satisfy $ ||(AB)^{\dagger}|| \neq || B^{\dagger} A^{\dagger}|| $ is
+\begin{equation}
+A= \begin{pmatrix}
+1 & -0.9888 \\
+1 & -1.00001\\
+\end{pmatrix}
+\end{equation} and
+\begin{equation}
+B=\begin{pmatrix}
+4&5\\
+6&7\\
+\end{pmatrix}
+\end{equation}
+
+I attempting finding 3 by 3 matrices for part a, but to no avail. I recognize that I need to work with matrices that are singular.
+ 
+\end{document}

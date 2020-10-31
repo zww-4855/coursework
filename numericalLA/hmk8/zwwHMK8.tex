@@ -1,0 +1,113 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{geometry}
+ \geometry{
+ a4paper,
+ total={170mm,257mm},
+ left=20mm,
+ top=20mm,
+ }
+\usepackage{natbib}
+%opening
+
+%\usepackage[version=3]{mhchem} % Formula subscripts using \ce{}
+\usepackage{braket}
+\usepackage{amsmath}
+\usepackage{wrapfig}
+\usepackage{lipsum}     % for sample text
+\usepackage{upgreek}
+\usepackage{graphicx}
+\usepackage{chemfig}
+\usepackage{caption}
+\usepackage{textcomp}
+\usepackage{underscore}
+\usepackage{gensymb}
+\usepackage{dcolumn}
+\usepackage{siunitx}
+\usepackage{multirow}
+\usepackage{amssymb}
+
+
+\begin{document}
+
+
+
+
+\section{Question 1}
+
+Functionally, the end result is the same, however, the
+
+A Householder reflection matrix $H$ -defined as $H(\omega)=I - \frac{2}{\omega^* \omega}\omega \omega^*$ -can be understood as a reflection of the vector $x$ across the nullspace of $\omega^*$. When it acts on a vector $x\in \mathbb{C}^n$ yields a map
+\begin{equation}
+x=\begin{pmatrix}
+x_1 \\
+x_2 \\
+\vdots \\
+x_k \\
+\vdots \\
+x_n \\
+\end{pmatrix}
+\rightarrow
+Hx=\begin{pmatrix}
+x_1 \\
+\vdots \\
+x_{k-1} \\
+XX_k \\
+\vdots \\
+0 \\
+\end{pmatrix}
+\end{equation} that essentially leaves the components of the vector $x$ unchanged if below some index $k$, changes the index at $k$, and all indices beyond $k$ are 0. So in this case, $\omega = x + sign(x) ||x||_2 e_1$, which can be used to define the Householder matrix $H$ that transforms $x$ into $\alpha e_1$ for some constant $\alpha$. The net result is some column of $R=Q^*x$. Furthermore we see that since the Householder matrix is defined to be unitary such that
+\begin{equation}
+H=\begin{pmatrix}
+I & 0\\
+0 & F\\
+\end{pmatrix}
+\end{equation} where $I$ is the (k-1)x(k-1) identiy matrix, F is the unitary matrix seen to be $F=I-2\frac{vv^*}{v^*v}$ for some $v=sign(x_1)||x||_2e_1+x$. Thus, we note that it would be possible for the determinant for such a matrix to be -1, based on the form of $F$.
+
+The Givens rotation matrix essentially incorporates rotation elements via trig functions into the Identity matrix at locations relevant to particular rows/columns needing to be zeroed out. It can be shown that $P_{ij}$ rotates $x$ through some angle $\theta$ in the $ij$ plane. So the set of $P_{1:}$ matrices define the orthogonal matrix $Q^*=P_{1n}\cdots P_{13}P_{12}$, which should yield the same column of $R$ as the relevant Householder reflection matrix did. However from its definition, we know the Householder matrix will have the all 1's on the diagonal with two pairs of $cos$ insertion at two locations, in addition to a symmetrically distributed pair of $sin$ and $-sin$ somewhere off the main diagonal. Thus if we were to take the determinate of such a matrix, we note that we would essentially get $sin^2(x)+cos^2(x)=1$. 
+
+In summary, although the two matrices perform the same function, because their determinants are different, they can not be equivalent. On a side note, this problem has traumatized me. I naiively assumed these transformations - as long as they perform the same function - are equivalent. In other words, there should only be one unique matrix $Q^*$  that transforms $A$ into $R$. But I suppose since these are fundamentally rotation matrices, we can pick any rotation increment through some theta as long as we maintain orthogonality. Nice.
+
+\section{Question 2}
+
+Upon distributing and rearranging terms - as well as the fact that $b-Ax=0$ - we see that $A(x+\Delta x)=b+\Delta b \rightarrow Ax+A\Delta x = b+ \Delta b \rightarrow A\Delta x =(b-Ax) +\Delta b \rightarrow A\Delta x=\Delta b \rightarrow x=A^{-1}\Delta b$. We can use the fact that $\frac{|| \hat{x}-x ||}{||x||}$ to see that the above can be rewritten such that
+\begin{equation}
+\frac{||A^{-1}\Delta b||}{||x||} = \frac{||\Delta x||}{||x||}
+\end{equation} Thus we are tasked with finding $||x||$. Recalling $b=Ax$, we can use the Cauchy Swartz inequality to see that $||b||=||Ax|| \leq ||A|| ||x|| \rightarrow \frac{||b||}{||A||}\leq||x||$. Inserting this into our relation shows us that
+\begin{equation}
+\frac{||\Delta x||}{||x||} \leq \frac{||A|| ||A^{-1} \Delta b||}{||b||} \leq  \frac{||A|| ||A^{-1} || || \Delta b||}{||b||} = Cond(A)\frac{|| \Delta b||}{||b||}
+\end{equation}
+
+
+
+
+
+\section{Question 3}
+\subsection{part a}
+Knowing $A$ is invertible, we begin by supposing $A+E$ is singular and $||A^{-1}|| ||E|| < 1$. Then $(A+E)x=0$ for some $x\neq0$. This implies that
+\begin{equation}
+Ax+Ex=0\rightarrow (A^{-1}A)x+A^{-1}Ex=0 \rightarrow x=-A^{-1}Ex
+\end{equation} using the fact that $A^{-1}A=I$. Taking the p-norm on both sides and realizing $||AB||\leq ||A|| ||B||$ for matrices $A,B$ yields 
+\begin{equation}
+||x||_p =||A^{-1}Ex||_p \rightarrow ||x||_p \leq ||A^{-1}||_p||E||_p ||x||_p \rightarrow 1 \leq ||A^{-1}||_p||E||_p 
+\end{equation} The final step was achieved by dividing through by the p-norm of $x$. So, we see that this contradicts our original assertion that $||A^{-1}|| ||E|| < 1$. Therefore, we know $A+E$ must be nonsingular.
+
+\subsection{part b}
+To begin, we let $(A+E)^{-1}=C$, then we know $(A+E)C=I$. Using the identities $|| X +Y || \ge || X || + || Y ||$ and $||XY||\leq ||X|| ||Y||$, we see that $1=|| I || = ||(A+E)C|| \ge ||AC|| + ||EC|| \ge ||AC|| - ||EC|| \ge ||A||||C|| - ||E||||C|| \rightarrow 1 \ge ||C||(||A|| - ||E||)$. We rearrange, multiply by a factor of 1, then again use the identity $||A^{-1}||||A||\ge ||AA^{-1}||=1$ such that
+\begin{equation}
+||C|| \leq \frac{1}{||A|| + ||E||} \cdot \frac{||A^{-1}||}{||A^{-1}||} \leq \frac{||A^{-1}||}{1-||A^{-1}||||E||}
+\end{equation} Remembering $C=(A+E)^{-1}=$, we see that $||(A+E)^{-1}|| \leq \frac{||A^{-1}||}{1-||A^{-1}||||E||}$
+  
+ \section{Question 4}
+The problem was solved by reducing the multiplications in the numerator and denominator intro a multiplication of ratios such that
+\begin{equation}
+\frac{n(n-2)(n-4)\cdots 2}{(n-1)(n-3)\cdots1} = \frac{n}{(n-1)} \cdot \frac{n-2}{n-3} \cdot \frac{n-4}{n-5}\cdots
+\end{equation}
+ For the value of R(4,000,000) I get 2506.628.
+ 
+  \section{Question 5}
+  The solution to this problem requires the following equivalence
+  \begin{equation}
+  \frac{cosh(x)}{1+sinh(x)} = \frac{e^x + e^{-x}}{1+e^x - e^{-x}} =\frac{e^x (1+e^{-2x})}{e^x(\frac{1}{e^x}+1-e^{-2x})} = \frac{ (1+e^{-2x})}{(\frac{1}{e^x}+1-e^{-2x})}
+  \end{equation}
+So I performed the sum on this quantity. This was rearranged with the intent so that as $x\rightarrow \infty$ $e^x$ doesn't blow up. I get the value of the sum to be 1.000730.
+\end{document}
