@@ -1,0 +1,52 @@
+\documentclass[12pt,a4paper,twoside]{article}
+%\documentclass[journal=jceaax,manuscript=article]{achemso}
+%\usepackage{natbib}
+%opening
+
+\usepackage[version=3]{mhchem} % Formula subscripts using \ce{}
+
+\usepackage{amsmath}
+\usepackage{upgreek}
+\usepackage{graphicx}
+\usepackage{chemfig}
+\usepackage{caption}
+\usepackage{textcomp}
+\usepackage{underscore}
+\usepackage{gensymb}
+\usepackage{dcolumn}
+\usepackage{siunitx}
+\usepackage{multirow}
+
+\begin{document}
+\subsection{problem 1}
+The issue at play is to find the least squares solution for some $x$, given some $b$ that may or may not be in the column space of $A$. If we are sampling an overdetermined problem where $b$ is not necessarily in the column space of $A$, then we solve the problem by minimizing a residual seen to be $||r||_2=|| b - Ax ||_2$. So in other words, we need to find the component of $b$ that is in column space of $A$ by orthogonal projection. Assuming $r$ is the vector that takes us from some $b$ to some $y$ that is in the column space of $A$, we note that this value of $r$ that satisfies this in addition to the minimization constraint introduced above is one that necessarily has to be perpendicular the column space of $A$, ie $r$ is perpendicular to the column space of $A$. This is equivalent to saying $A^* r =0$.
+
+In summary, we are solving 2 equations simulateniously: one for some $r$ such that $A^* r =0$ and one $r=b-Ax$. Rearranging the ladder term, we see that these equations can be packaged neatly such that
+\begin{equation}
+\begin{pmatrix}
+I & A \\
+A^* & 0 \\
+\end{pmatrix}\begin{pmatrix}
+r \\
+x \\
+\end{pmatrix}
+= \begin{pmatrix}
+b \\
+0\\
+\end{pmatrix}
+\end{equation}
+
+\subsection{problem 2}
+Line 1 computes the Singular value decomposition of a matrix A. Line 2 stores the singular values along the diagonal of a matrix and calls this S. Line 3 defines a tolerance value, which is equivalent to a multiplication of the largest singular value, multiplied by machine precision, multiplied by the maximum dimension of the matrix A. Line 4 returns determines the total number of elements in the diagonal of S that are larger than this tolerance. Line 5 then takes the reciporcal of the S, assuming that each of the elements along the diagonal are larger than the tolerance. The final line then calculates the pseudoinverse of a matrix A, using only the singular values that are considered stable with respect to some tolerance. 
+
+\subsection{problem 3}
+From page 97 and 98 in the book, we recognize that the interval from $2^5=32$ to $2^6=64$ can be represented in double precision by 
+
+\begin{equation}
+2^5, 2^5 + 2^5(2^{-52}) , 2^5 + 2^5(2\times 2^{-52}), \cdots , 2^6
+\end{equation}
+Thus, the number directly after 32 increases 32 by $2^5(2^{-52}) = 2^{-47}$.
+
+Using the same train of thought, the interval $2^{53}$ to $2^{54}$ can be representing in a similar manner, with the number directly after $2^{53}$ being $2^{53}+2^{53}(2^{-52})=2^{53}+2$
+
+\end{document}

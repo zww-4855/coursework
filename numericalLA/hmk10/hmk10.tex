@@ -1,0 +1,218 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{geometry}
+ \geometry{
+ a4paper,
+ total={170mm,257mm},
+ left=20mm,
+ top=20mm,
+ }
+\usepackage{natbib}
+%opening
+
+%\usepackage[version=3]{mhchem} % Formula subscripts using \ce{}
+\usepackage{braket}
+\usepackage{amsmath}
+\usepackage{wrapfig}
+\usepackage{lipsum}     % for sample text
+\usepackage{upgreek}
+\usepackage{graphicx}
+\usepackage{chemfig}
+\usepackage{caption}
+\usepackage{textcomp}
+\usepackage{underscore}
+\usepackage{gensymb}
+\usepackage{dcolumn}
+\usepackage{siunitx}
+\usepackage{multirow}
+\usepackage{amssymb}
+
+
+\begin{document}
+
+
+
+
+
+
+\section{Question 1 - Book 20.1}
+We will use a proof by induction to show that A has a LU factorization if for each $k$ with $1\leq k \leq m$, the upper-left $k \times k$ block is nonsingular. The $k=1$ portion of the proof is the trivial case as $A_{1:1,1:1}=L_{1:1,1:1}U_{1:1,1:1}$.  We assume the following is true: $A_{1:k,1:k}=L_{1:k,1:k}U_{1:k,1:k}$ for $k \leq m$. 
+
+We want to prove the case $k=m+1$. For this, we see that
+
+\begin{equation}
+A_{1:m+1,1:m+1} =\begin{pmatrix}
+L_{1:m,1:m} & 0 \\
+x_m & 1 \\
+\end{pmatrix}
+\begin{pmatrix}
+U_{1:m,1:m} & y_m \\
+0 &	u_{m+1}\\
+\end{pmatrix}
+\end{equation}
+We allude to ideas illustrated in part b of question 2 to see that the $x_m$,$y_m$, and $u_{m+1}$ is shorthand notation for $x_m=(a_{m+1,1}\cdots a_{m+1,m})U_{1:m,1:m}^{-1}$, 
+\begin{equation}
+y_m=L_{1:m,1:m}^{-1}\begin{pmatrix}
+a_{1,m+1} \\
+\vdots \\
+a_{m,m+1}
+\end{pmatrix}
+\end{equation} and $u_{m+1}=-x_my_m$. Since the $det(A_{1:m+1,1:m+1})=det(U_{1:m,1:m})u_{m+1} \neq 0$, $u_{m+1} \neq 0 $ and the LU decomposition is unique. 
+
+\section{Question 2 - Book 20.3}
+\subsection{part a}
+So if i understand this question correct, we can simply multiply the LHS out, block by block. So the 1,1 block on the right hand side should be equivalent to $IA_{11}$. The 1,2 block on the RHS should be equal to $IA_{12}$. The 2,1 block will be equivalent to $-A_{21}A_{11}^{-1}A_{11} + IA_{21}=0$, since $A_{11}^{-1}A_{11}=I$. And finally the 2,2 block with be equal to $-A_{21}A_{11}^{-1}A_{12} + IA_{22}$.
+
+
+\subsection{part b}
+After n steps of Gaussian elimination, A has been factorized such that
+\begin{equation}
+\begin{pmatrix}
+A_{11}&A_{12}\\
+A_{21}&A_{22}\\
+\end{pmatrix}=
+\begin{pmatrix}
+L_{11}&0\\
+L_{21}&I\\
+\end{pmatrix}
+\begin{pmatrix}
+U_{11}&U_{21}\\
+0&U_{22}\\
+\end{pmatrix}
+\end{equation}
+If we expand this out, we get a linear system of equations: $L_{11}U_{11}=A_{11}$, $L_{11}U_{12}=A_{12}$, $L_{21}U_{11}=A_{21}$, and $L_{21}U_{12} + U_{22}=A_{22}$. Solving the third equation for $L_{21}$, we see that $L_{21}=A_{21}U_{11}^{-1}$, and solving the second equation we see that $U_{12}=L_{11}^{-1}A_{12}$. Using this information to solve the fourth equation we see that:
+\begin{equation}
+U_{22}=A_{22}-L_{21}U_{12}=A_{22}-A_{21}U_{11}^{-1}L_{11}^{-1}A_{12}=A_{22}-A_{21}A_{11}^{-1}A_{21}
+\end{equation} where we have used the fact that $A_{11}^{-1}=U_{11}^{-1}L_{11}^{-1}$
+
+\section{Question 3 - Book 21.6}
+We know that Gaussian elimination has the following effect on matrix $A$:
+\begin{equation}
+A=\begin{pmatrix}
+a_{11} & A_{12}\\
+A_{21} & A_{22}\\
+\end{pmatrix} \rightarrow
+\begin{pmatrix}
+a_{11}& A_{12}\\
+0& A_{22}-\frac{A_{21}}{a_{11}}A_{21}
+\end{pmatrix}
+\end{equation} In order to avoid row swapping, we need to show that elimination creates submatrices that are diagonally dominant. I will try using a proof by induction for this. So when the dimension is $k=1$ of these submatrices, this is trivial as each block is already inherently diagonal. We assume that the result of elimination yields diagonally dominant submatrices for $k<n$. We then need to show that this is also true for any matrix $A$ of dimension $n$. We see that
+\begin{equation}
+\sum_{j\neq k}| \big(A_{22} -\frac{A_{21}}{a_{11}}A_{21}\big)_{jk} | \leq \sum_{j\neq k}| \big(A_{22}  \big)_{jk} + \sum_{j\neq k} |\frac{1}{a_{11}} (A_{21})_j (A_{12})_k|
+\end{equation} Furthermore, we note that we have assumed already the diagonal elements of $A$ are dominant. We use this idea to write
+\begin{equation}
+\sum_{j\neq k}| \big(A_{22}\big)_{jk}| < |(A_{22})_{kk}| - |(A_{12})_k|
+\end{equation} and 
+\begin{equation}
+\sum_{j\neq k} |(A_{21})_j | < |a_{11}| -|(A_{21})_k| 
+\end{equation} Inserting these relations into our original equation we see that
+
+\begin{equation}
+\sum_{j\neq k}| \big(A_{22} -\frac{A_{21}}{a_{11}}A_{21}\big)_{jk} |  <  |(A_{22})_{kk}| - |(A_{12})_k| + \frac{|(A_{12})_k |}{|a_{11}|}\Bigg( |a_{11} - |(A_{21})_k| \Bigg) \leq |(A_{22})_{kk} -\frac{(A_{21})_k (A_{12})_k}{a_{11}}|
+\end{equation} where we finally arrive at the desired result that $\sum_{j\neq k}| \big(A_{22} -\frac{A_{21}}{a_{11}}A_{21}\big)_{jk} | \leq  |\Bigg( (A_{22}) -\frac{(A_{21}) (A_{12})}{a_{11}}\Bigg)_{kk}|
+$
+
+$\textbf{Goal}$: Given $A \in \mathbb{R}^{n \times n}$, guess vector $v_1 \in \mathbb{R}^n$ and number of iterations $m$, find a tridiagonal $T \in \mathbb{R}^{m \times m}$ and $V \in \mathbb{R}^{n\times m}$ such that $T=V^*AV$. Diagonalize $T$ (hopefully of smaller dimension than $A$) to approximate an extremal eigenvalue of $A$. 
+
+
+
+
+
+\begin{equation}
+\omega_1^{\prime}=Av_1
+\end{equation}
+
+\begin{equation}
+\alpha_1=\omega_1^{\prime *} v_1
+\end{equation}
+
+\begin{equation}
+\omega_1 = \omega_1^{\prime} -\alpha_1 v_1
+\end{equation}
+
+\begin{equation}
+\beta_j = || \omega_{j-1} ||
+\end{equation}
+
+\begin{equation}
+\beta_j \neq 0 \rightarrow v_1 = \frac{\omega_{j-1}}{ \beta_j}
+\end{equation}
+
+\begin{equation}
+\omega_j^{\prime}=Av_j
+\end{equation}
+
+\begin{equation}
+\alpha_j = \omega_j^{\prime *}v_j
+\end{equation}
+
+\begin{equation}
+\omega_j = \omega_j^{\prime} - \alpha_j v_j - \beta_j v_{j-1}
+\end{equation}
+
+\begin{equation}
+V=\begin{pmatrix}
+v_1 & v_2 & \cdots & v_m \\
+\end{pmatrix}
+\end{equation}
+
+
+\begin{equation}
+T=\begin{pmatrix}
+\alpha_1 & \beta_1 & 0 & \cdots & 0 \\
+\beta_2 & \alpha_2 & \beta_3 & \cdots& 0 \\
+	  0   &	\ddots	& \ddots &\ddots & 0\\
+		& 			& 		& 	& \\
+				& 			& 		& 	& \\
+						& 			& 		& 	& \\
+\end{pmatrix}
+\end{equation}
+
+
+
+
+
+% Note::: T is similarity transform of A
+$\textbf{Proof}$: Suppose $A$ is Hermitian, $\lambda$ is an extremal eigenvalue of $A$ we are searching for, a factorization $V^*AV=T$ has been found, and $Tx = \lambda x$. Given the corresponding eigenvector of $A$, $y=Vx$,
+\begin{equation}
+Ay=(VTV^*)y=(VTV^*)(Vx)=V(Tx)=\lambda(V x) = \lambda y
+\end{equation}
+So by diagonalizing $T$, we effectively find the eigenvalues of $A$.
+
+\newpage
+
+$\textbf{Application}$: Use Rayleigh quotient and $y\neq0$ to generate $v_k$ such that
+
+\begin{equation}
+r(y)=\frac{y^TAy}{y^Ty} \rightarrow m_k = \min_{y\neq0} \frac{x^T(V_k^TAV_k)x}{x^Tx} = \min_{||x||_2=1} r(V_k x) \geq \lambda_n(A)
+\end{equation}
+where $m_k$ is an increasingly better approximation to $\lambda$ upon successive iteration.
+%This can be achieved using the concept of a Krylov subspace where 
+%\begin{equation}
+%\text{span} \{v_1,\cdots,v_k\}=\text{span}\{v_1, Aq_1,\cdots,A^{k-1}q_1\}
+%\end{equation}
+Equating columns $k$ of $AQ=QT$ and using a little algebra , we see that for iteration $k=1,\cdots,n-1$
+\begin{equation}
+Av_k=\beta_{k-1}v_{k-1} + \alpha_k v_k +\beta_k v_{k+1}
+\end{equation}
+Projecting this on to $v_k$ and using the fact that the columns of $V$ are orthonormal shows that $\alpha_k =v_k^T Av_k$, $\beta_k=v_{k+1}^TAv_k$ for scalars $\alpha,\beta$. 
+
+\newpage
+
+$\textbf{Implementation}$: If choose a random starting $r_0=v_0$, we can define a vector $r_k=(A-\alpha_k I)v_k-\beta_{k-1}v_{k-1}$ where $v_{k+1}=\beta_k^{-1}r_k$ and $\beta_k =||r_k||_2$. We iterate this  up to $n$ times, or until $r_k=0$. This implies that our signal for convergence is when $AV_k -V_kT_k = r_k e_k^T$ or $\beta_k =0$. In the limit $k\rightarrow \infty$, $\alpha_k=v_k^T A^k v_k \approx \lambda $.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

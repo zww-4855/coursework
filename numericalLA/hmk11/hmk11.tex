@@ -1,0 +1,227 @@
+\documentclass[12pt,a4paper,twoside]{article}
+%\documentclass[journal=jceaax,manuscript=article]{achemso}
+%\usepackage{natbib}
+%opening
+
+\usepackage[version=3]{mhchem} % Formula subscripts using \ce{}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{upgreek}
+\usepackage{graphicx}
+\usepackage{chemfig}
+\usepackage{caption}
+\usepackage{textcomp}
+\usepackage{underscore}
+\usepackage{gensymb}
+\usepackage{dcolumn}
+\usepackage{siunitx}
+\usepackage{multirow}
+
+\begin{document}
+\section{Problem 1}
+We note that since $A$ is hermitian positive definite, it admits a unique Cholesky decomposition given to be
+\begin{equation}
+A=\begin{pmatrix}
+\alpha & 0 \\
+\frac{\omega}{\alpha}&I\\
+\end{pmatrix}
+\begin{pmatrix}
+1 & 0 \\
+0 & K-\frac{\omega \omega^*}{a_{11}} \\
+\end{pmatrix}
+\begin{pmatrix}
+\alpha & \frac{\omega^*}{\alpha}\\
+0& I \\
+\end{pmatrix} = R_1^* A_1 R_1
+\end{equation} 
+We wish to show that all principal submatrices of $A$ (ie all $A_{j}$ for $j=1,\cdots,m$) are Hermitian positive definite via induction. We start for the case $j=1$. We let $X$ be of full rank $\in \mathbb{C}^{m\times m-1}$ with Euclidean basis vectors in each column. We know the principal submatrix of  $A_1$ is Hermitian, because $(X^*AX)^* = X^*AX$. We also know since $Xx\neq 0$, that it is positive definite because $x^*(X^*AX)x =(Xx)^* A(Xx) > 0$. Thus, we have shown that the first principal submatrix of $A$, $A_1$, is hermitian positive definite. Now, assume that the principle submatrices of $A_2,\cdots, A_{m-1}$ are also Hermitian positive definite. We need to show that $A_m$ is Hermitian positive definite. In this case, let $X\in \mathbb{C}^{m\times 1}$ and containing the relevant Euclidean basis vector. Again, we see that $A_m$ is Hermitian, since $(X^*AX)^* = X^*AX$. Indeed since this is effectively a 1 by 1 matrix, this makes sense. Similarly, it is positive definite, since $x^*(X^*AX)x =(Xx)^* A(Xx) > 0$. Thus, this shows that every principal submatrix of $A$ is Hermitian positive definite. 
+
+
+
+
+\section{Problem 2}
+Let $A=LDL^*$, for some lower triangular matrix $L$ and diagonal matrix $D$. If we assume that $A$ is positive definite, this implies that $x^* Ax>0, \forall x\neq 0$. By letting $y=L^*x$, and using the fact that since $L$ is invertible implies that $x=0$ if and only if $y=0$, we see that
+\begin{equation}
+x^*Ax=x^*(LDL^*)x=y^*Dy  =\sum_i |y_i|^2 d_{ii} > 0
+\end{equation}
+Now, the squared magnitude of $y$ is always positive, but this does not necessarily put any constraint on any arbitrary element of the set of diagonal elements of $D$. But suppose that a particular $d_{ii}\leq 0$ for some index $j$, $1\leq j \leq n$ and assume we create a $y$ such that only the $d_{ii}\leq 0 $ term survives. This would implies that $y^* Dy\leq0$, which contradicts our original assertion that $A$ is Hermitian positive definite. Ergo, every diagonal element of must be larger that 0. 
+
+
+\section{Problem 3}
+We want to show that if $A$ is a Hermitian positive definite matrix, then an element of $A$ with largest magnitude lies on the diagonal. Assuming $A$ is HPD, recall that we can factor $A$ using a Cholesky factorization such that
+\begin{equation}
+A=R^*R=\begin{pmatrix}
+&r_1^*&\\
+&r_2^*&\\
+&\vdots&\\
+&r_m^*&\\
+\end{pmatrix}
+\begin{pmatrix}
+r_1&r_2&\cdots&r_m\\
+\end{pmatrix}
+\end{equation} for rows and columns $r_j^*$ and $r_j$ respectively. We have the following knowledge regarding the relationship between the inner product of these rows and columns and individual elements of matrix $A$: $(r_j,r_j)=a_{jj}$, $(r_k,r_k)=a_{kk}$, and $(r_j,r_k)=a_{jk}$. Using the Cauchy-Schwartz inequality $(|x^*y| \leq ||x||_2 ||y||_2)$, we can set $x=r_j$ and $y=r_k$. Then we are left with
+\begin{equation}
+|r_j^* r_k | \leq \sqrt(r_j^* r_j)\sqrt(r_k^*r_k) \rightarrow |a_{jk}|\leq \sqrt{a_{jj}} \sqrt{a_{kk}}\rightarrow |a_{jk}|^2\leq a_{jj} a_{kk}
+\end{equation} We note that the strict equality is achieved whenever $j=k$, otherwise the inequality is always satisfied. 
+
+Now, let's assume that $|a_{jk}|$ is the largest element out of row/column $j$, as well as row/column $k$, where $j\neq k$. This would mean that $|a_{jk}|^2 > a_{jj}a_{kk}$, which is a contradiction since we have already shown that  $|a_{jk}|^2 < a_{jj} a_{kk}$. Thus we see that elements on the diagonal of a HPD matrix are largest in magnitude. 
+
+
+
+
+
+
+
+\section{Problem 4}
+We wish to prove the the product of two lower triangular matrices is a lower triangular matrix. We will use a proof by induction. Acknowledging that this is true in the case the matrix $1\times 1$, we choose to start by showing this is true for the case where we are dealing with a $2\times 2$ matrix.
+
+\begin{equation}
+\begin{pmatrix}
+a_{11}& 0\\
+a_{21}& a_{22}\\
+\end{pmatrix}
+\begin{pmatrix}
+b_{11}&0\\
+b_{21}&b_{22}\\
+\end{pmatrix}=
+\begin{pmatrix}
+a_{11}b_{11}&0\\
+a_{21}b_{11}+a_{22}b_{21}&a_{22}b_{22}\\
+\end{pmatrix}
+\end{equation}
+The inductive step assumes that this is true for the case where the matrices are $\in \mathbb{C}^{m \times m}$. We then must show that the assumption is true for the case where matrices $A$ and $B \in \mathbb{C}^{m+1 \times m+1}$. So our problem looks like
+\begin{equation}
+\begin{pmatrix}
+a_{11}& 0 & \cdots & 0\\
+a_{21}& a_{22}&\cdots&0\\
+\vdots &           & \ddots&0\\
+a_{m+1, 1}& a_{m+1, 2}&\cdots& a_{m+1,m+1}\\
+\end{pmatrix}
+\begin{pmatrix}
+b_{11}& 0 & \cdots & 0\\
+b_{21}& b_{22}&\cdots&0\\
+\vdots &           & \ddots&0\\
+b_{m+1, 1}& b_{m+1, 2}&\cdots& b_{m+1,m+1}\\
+\end{pmatrix}
+\end{equation} So an arbitrary column $c_j$ will be a linear combination of the columns of $A$, such that
+\begin{equation}
+c_j= \sum_{i}^{m+1} a_i b_{ij}
+\end{equation}
+
+So column 1 of the resulting matrix $C$ will look like
+\begin{equation}
+c_1=
+b_{11}\begin{pmatrix}
+a_{11}\\
+a_{21}\\
+\cdots\\
+a_{m+1,1}\\
+\end{pmatrix}+b_{21}
+\begin{pmatrix}
+0\\
+a_{22}\\
+\cdots \\
+a_{m+1,2}\\
+\end{pmatrix}+\cdots+b_{m+1,1}
+\begin{pmatrix}
+0 \\
+0 \\
+\cdots \\
+a_{m+1,m+1}\\
+\end{pmatrix} \equiv
+\begin{pmatrix}
+x \\
+x \\
+\cdots \\
+x\\
+\end{pmatrix}
+\end{equation}
+and columns 2 of the results matrix $C$ will look like
+
+\begin{equation}
+c_2=
+0 \begin{pmatrix}
+a_{11}\\
+a_{21}\\
+\cdots\\
+a_{m+1,1}\\
+\end{pmatrix}+b_{22}
+\begin{pmatrix}
+0\\
+a_{22}\\
+\cdots \\
+a_{m+1,2}\\
+\end{pmatrix}+\cdots+b_{m+1,2}
+\begin{pmatrix}
+0 \\
+0 \\
+\cdots \\
+a_{m+1,m+1}\\
+\end{pmatrix} \equiv
+\begin{pmatrix}
+0 \\
+x \\
+\vdots \\
+x \\
+\end{pmatrix}
+\end{equation}
+
+
+
+
+and column $m+1$ of the resulting matrix will look like
+\begin{equation}
+c_{m+1}=b_{m+1,m+1}
+\begin{pmatrix}
+0 \\
+0\\
+\cdots \\
+a_{m+1,m+1} \\
+\end{pmatrix} \equiv
+\begin{pmatrix}
+0 \\
+0\\ 
+\vdots \\
+x \\
+\end{pmatrix}
+\end{equation}
+
+Combining columns $1, \cdots , m+1$ into a complete matrix $C$ shows us that the matrix multiplication of 2 lower triagular matrices must yield a triangular matrix. 
+
+
+\section{Problem 5}
+Consider a Hermitian positive definite matrix $A \in \mathbb{C}^{m\times m}$ defined as
+\begin{equation}
+A=\begin{pmatrix}
+a_{11}&w^* \\
+w & K \\
+\end{pmatrix} 
+\end{equation} for $w\in \mathbb{C}^{m-1 \times 1}$, $w^* \in \mathbb{C}^{1 \times m-1}$, and $K \in \mathbb{C}^{m-1 \times m-1}$. We want to show that such a matrix has a Cholesky factorization using induction. We will use the following two criteria established in earlier proofs: diagonal elements of a Hermitian positive definite matrix are greater than zero, and each principal submatrix of a Hermitian positive definite matrix is itself Hermitian positive definite.  Since this matrix has $a_{11}>0$ and is defined as a Hermitian positive definite matrix, a symmetric triangular reduction technique can be used to factorize the matrix. Consequently our first step of induction shows $A$ can be factored such that
+\begin{equation}
+A=R_1A_1R_1^*=\begin{pmatrix}
+\alpha & 0 \\
+\frac{\omega}{\alpha}&I\\
+\end{pmatrix}
+\begin{pmatrix}
+1 & 0 \\
+0& K-\frac{ww^*}{a_{11}}\\
+\end{pmatrix}
+\begin{pmatrix}
+\alpha& \frac{w^*}{\alpha}\\
+0&I\\
+\end{pmatrix}
+\end{equation} for $\alpha = \sqrt a_{11}$. Relying on previously established proofs that the principal submatrices of Hermitian positive definite matrices are themselves Hermitian positive definite, we can continue this factorization for $A_1 =R_2 A_2 R_2^*$, and again for $A_2 = R_3 A_3 R_3^*$ and so on. Thus our inductive hypothesis is that each principal submatrices in $A_1, A_2, \cdots, A_{m-1}$ of the form $K-\frac{ww^*}{a_{jj}} \in \mathbb{C}^{j\times j}$ for $j =m-1,m-2, \cdots, 2$ can be factorized using an equivalent triangular reduction technique. We need to show that the submatrix $\in \mathbb{C}^{1\times 1}$ also can be factored using the same algorithm. As we have already established that all diagonal elements $>0$, and this submatrix contains only the diagonal element $a_{m,m}$, it meets the factorization criteria. This show that there exists a Cholesky factorization for any  Hermitian positive definite matrix $A$.
+
+\section{Problem 6 - Book 23.1}
+First we note that since $A$ is nonsignular, $Ax\neq 0 \forall x\neq0$. Consequently, we see that 
+\begin{equation}
+x^*A^* Ax=||Ax||_2^2>0
+\end{equation}
+meaning that $A^*A$ is positive definite and therefore $A^*A$ has a unique cholesky factorization.
+Given the fact that $A=QR$ and $A^*A=U^* U$, it is true that $R=U$. This can be seen since
+\begin{equation}
+A^*A=R^*Q^* QR =R^* R=U^* U
+\end{equation} since $Q$ is unitary. 
+
+
+\end{document}
